@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "petnatics-b9719": {
+      "hosting": {
+        "angular-crud-basics": [
+          "petnatics-b9719"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "petnatics-b9719"
+  }
+}

@@ -1,0 +1,44 @@
+<nav class="shadow navbar navbar-expand-sm navbar-dark bg-dark text-center fixed-top" aria-label="Third navbar example">
+  <div class="container-fluid">
+    <a class="navbar-brand mb-2 d-block d-sm-none" href="/homepage"><img src="assets/imgs/petnatics-log.png" alt="" style="height: 30px;"></a>
+    <a class="navbar-brand mb-2 d-none d-sm-block" href="/homepage"><img src="assets/imgs/petnatics.png" alt="" style="height: 30px;"><img src="assets/imgs/petnatics-log.png" alt="" style="height: 30px;" class="ms-1"></a>
+      <div class="mx-auto d-none d-sm-block">
+      </div>
+      <div class="btn-group" role="group" *ngIf="user$ | async as user; else login">
+        <a type="button" class="btn btn-primary position-relative me-3">
+          <em class="fas fa-bell"></em>
+          <span class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger">
+            <span class="form-text text-white">9</span>
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </a>
+        <img src="{{user?.photoURL}}" alt="" class="img-fluid rounded-pill me-2" style="height: 30px; width: 30px;">
+        <p class="form-text text-white mb-0">{{user?.displayName}}</p>
+        <a class="rounded-pill btn-sm text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"><em class="fas fa-ellipsis-v"></em></a>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+          <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">Menú</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action">Mi Perfil</a>
+              <a href="#" (click)="onLogout()" class="list-group-item list-group-item-action">Cerrar Sesión</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #login>
+        <a id="btnGroupDrop1" type="button" class="rounded-pill btn text-white"
+          data-bs-toggle="dropdown" aria-expanded="false"><em class="fas fa-user"></em>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="btnGroupDrop1">
+          <li><a class="dropdown-item" href="#" routerLink="/login">Iniciar Sesion</a></li>
+          <li><a class="dropdown-item" href="#" routerLink="/register">Registrarme</a></li>
+        </ul>
+      </ng-template>
+
+  </div>
+</nav>

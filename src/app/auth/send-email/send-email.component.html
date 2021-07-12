@@ -1,0 +1,28 @@
+<div class="mt-4">.</div>
+<div class="col-md-6 mx-auto" *ngIf="user$ | async as user; else loading">
+    <div class="card mt-5 mb-5">
+        <div class="card-body text-center">
+            <div class="card-title mt-4"><h2>Te has registrado con exito, muchas gracias!!</h2></div>
+            <div class="form-group mt-3 mb-5">
+                <p class="text-center">
+                    Se te ha enviado un mensaje de verificacion al correo: <strong>{{user?.email}}</strong>
+                </p>
+                <p class="text-center">
+                    Porfavor revisa la bandeja de entrada en tu correo para que podamos verificar tu email
+                </p>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary rounded-pill" (click)="onSendEmail()">Enviar de nuevo</button>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #loading>
+    <div class="row">
+        <div class="col text-center mt-5 mb-5">
+            <div class="spinner-grow text-success mt-5 mb-5" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+</ng-template>
