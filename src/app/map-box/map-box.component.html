@@ -1,0 +1,21 @@
+<br>
+<div class="mt-5">.</div>
+<div class="conteiner">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="message" placeholder="you message...">
+            </div>
+            <h3>Marcadores</h3>
+            <div *ngFor="let marker of markers">
+                <button class="btn btn-sussess" (click)="flyTo(marker)">{{ marker.properties.message}}</button>
+                <button class="btn btn-danger" (click)="removeMarker(marker)"><rem class="fas fa-minus-square"></rem></button>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="map" id="map"></div>
+        </div>
+    </div>
+</div>
+
+

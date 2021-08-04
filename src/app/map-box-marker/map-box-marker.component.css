@@ -1,0 +1,12 @@
+#map-mapbox{
+    width: auto;
+    height: 500px;
+    background-color: aqua;
+}
+.marker{
+    display: block;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}

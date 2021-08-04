@@ -2,166 +2,119 @@
     .
 </div>
 
-<div class="box mt-5">
-    <img class="rounded mx-auto d-block p-4" src="assets/imgs/petnatics-log.png" alt="">
-</div>
-
-<div id="carouselExampleControlsNoTouching" class="carousel slide mt-5" data-bs-touch="false" data-bs-interval="false">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos rem officia excepturi, ex
-                                accusamus expedita recusandae, laudantium neque suscipit quas quod libero dicta. Quae
-                                tempora nihil est aperiam nulla harum!</p>
-                        </div>
-                    </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    Registrar usuario
                 </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos rem officia excepturi, ex
-                                accusamus expedita recusandae, laudantium neque suscipit quas quod libero dicta. Quae
-                                tempora nihil est aperiam nulla harum!</p>
-                        </div>
+                <div class="body">
+                    <div class="form-group">
+                        <label for="firstName">Nombre</label>
+                        <input type="text" class="form-control" id="firstName" required [(ngModel)]="user.firstName"
+                            name="firstName" />
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos rem officia excepturi, ex
-                                accusamus expedita recusandae, laudantium neque suscipit quas quod libero dicta. Quae
-                                tempora nihil est aperiam nulla harum!</p>
-                        </div>
+                    <div class="form-group">
+                        <label for="lastName">Apellido</label>
+                        <input type="date" class="form-control" id="lastName" required [(ngModel)]="user.lastName"
+                            name="lastName" />
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos rem officia excepturi, ex
-                                accusamus expedita recusandae, laudantium neque suscipit quas quod libero dicta. Quae
-                                tempora nihil est aperiam nulla harum!</p>
-                        </div>
+                    <div class="form-group">
+                        <label for="location">Ubicación</label>
+                        <input class="form-control" list="datalistOptions" id="exampleDataList" type="text"
+                            placeholder="Ingrese su ubicación" [(ngModel)]="searchTerm" (ngModelChange)="search($event)" [value]="selectedAddress" [(ngModel)]="user.location">
+                        <datalist id="datalistOptions">
+                            <option *ngFor="let address of addresses" (click)="onSelect(address)">{{address}}</option>
+                        </datalist>
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos rem officia excepturi, ex
-                                accusamus expedita recusandae, laudantium neque suscipit quas quod libero dicta. Quae
-                                tempora nihil est aperiam nulla harum!</p>
-                        </div>
+                    <div class="form-group">
+                        <label for="typeOfUser">Tipo de Usuario</label>
+                        <input type="text" class="form-control" id="typeOfUser" required [(ngModel)]="user.typeOfUser"
+                            name="typeOfUser" />
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos rem officia excepturi, ex
-                                accusamus expedita recusandae, laudantium neque suscipit quas quod libero dicta. Quae
-                                tempora nihil est aperiam nulla harum!</p>
-                        </div>
-                    </div>
+                    <button *ngIf="!select" (click)="saveUser()" class="btn btn-success box">Submit</button>
+                    <button *ngIf="select" (click)="updateUser(user, user.key)" class="btn btn-success box">UpDate</button>
                 </div>
             </div>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
-
+<div class="conteiner">
+    <div class="row">
+        <div *ngFor="let item of profilesRef" class="col-md-4">
+            <div class="card mt-3">
+                <div class="card-body text-center">
+                    <span>Nombre:</span>
+                    <p>{{item.firstName}}</p>
+                    <span>Fecha de Nacimiento:</span>
+                    <p>{{item.lastName}}</p>
+                    <span>Lugar de Nacimiento:</span>
+                    <p>{{item.location}}</p>
+                </div>
+                <button class="btn btn-primary box" (click)="selectUser(item)">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row mt-5">
-    <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
-        <div class="card shadow box">
-            <div class="card-body">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
+    <div class="row col-9 mx-auto">
+        <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
+            <div class="card box">
+                <h5 class="text-center pt-3">Búsqueda</h5>
+                <div class="card-body">
+                    <img src="assets/imgs/brujula.png" alt="" class="img-fluid p-4">
+                </div>
+                <a href="" class="stretched-link"></a>
             </div>
-            <div class="card-footer">
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
+            <div class="card box">
+                <h5 class="text-center pt-3">Calendario</h5>
+                <div class="card-body">
+                    <img src="assets/imgs/calendario.png" alt="" class="img-fluid p-4">
+                </div>
+                <a href="" class="stretched-link"></a>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
+            <div class="card box">
+                <h5 class="text-center pt-3">Compartir</h5>
+                <div class="card-body">
+                    <img src="assets/imgs/compartir.png" alt="" class="img-fluid p-4">
+                </div>
+                <a href="" class="stretched-link"></a>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
+            <div class="card box">
+                <h5 class="text-center pt-3">Galería</h5>
+                <div class="card-body">
+                    <img src="assets/imgs/galeria.png" alt="" class="img-fluid p-4">
+                </div>
+                <a href="" class="stretched-link"></a>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
+            <div class="card box">
+                <h5 class="text-center pt-3">Mascotas</h5>
+                <div class="card-body">
+                    <img src="assets/imgs/listado.png" alt="" class="img-fluid p-4">
+                </div>
+                <a href="" class="stretched-link"></a>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
+            <div class="card box">
+                <h5 class="text-center pt-3">Protección</h5>
+                <div class="card-body">
+                    <img src="assets/imgs/verificado.png" alt="" class="img-fluid p-4">
+                </div>
                 <a href="" class="stretched-link"></a>
             </div>
         </div>
     </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
-        <div class="card shadow box">
-            <div class="card-body">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-            </div>
-            <div class="card-footer">
-                <a href="" class="stretched-link"></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
-        <div class="card shadow box">
-            <div class="card-body">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-            </div>
-            <div class="card-footer">
-                <a href="" class="stretched-link"></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
-        <div class="card shadow box">
-            <div class="card-body">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-            </div>
-            <div class="card-footer">
-                <a href="" class="stretched-link"></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
-        <div class="card shadow box">
-            <div class="card-body">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-            </div>
-            <div class="card-footer">
-                <a href="" class="stretched-link"></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-4 col-xs-6 mb-3">
-        <div class="card shadow box">
-            <div class="card-body">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-                <img src="assets/imgs/my-logo-petnatics.png" alt="" class="img-fluid">
-            </div>
-            <div class="card-footer">
-                <a href="" class="stretched-link"></a>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 <div class="row mt-5 mb-3">

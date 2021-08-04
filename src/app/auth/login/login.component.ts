@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import firebase from 'firebase/app/';
 import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-login',
@@ -23,6 +24,11 @@ export class LoginComponent implements OnInit {
     try{
       const user = await this.authSvc.login(email, password);
       if(user && user.user.emailVerified){
+        firebase.auth().currentUser.getIdToken(true).then(function(uidToken){
+          localStorage.setItem('uidToken', uidToken);
+          });
+        const uid = firebase.auth().currentUser.uid;
+          localStorage.setItem('uid', uid);
         this.router.navigate(['/home'])
       }else if(user){
         this.router.navigate(['/verification-email'])

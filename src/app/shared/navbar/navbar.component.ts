@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class NavbarComponent {
   public user$: Observable<any> = this.authSvc.afAuth.user;
-  
   constructor(private authSvc:AuthService, private router:Router) { }
 
   async onLogout(){

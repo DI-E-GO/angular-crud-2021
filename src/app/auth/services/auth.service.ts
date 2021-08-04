@@ -6,12 +6,12 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth) { }
   async loginGoogle(){
     try{
-      return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        const result = this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        return result;
     }catch(error){
       console.log(error);
     }
   }
-
   async sendVerificationEmail():Promise<void>{
     return (await this.afAuth.currentUser).sendEmailVerification();
   }
@@ -26,5 +26,7 @@ export class AuthService {
   }
   async logout(){
     await this.afAuth.signOut();
+    localStorage.removeItem('uidToken');
+    localStorage.removeItem('uid')
   }
 }

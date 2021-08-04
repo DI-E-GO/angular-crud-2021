@@ -11,5 +11,8 @@ export const environment = {
     storageBucket: "petnatics-b9719.appspot.com",
     messagingSenderId: "256160591018",
     appId: "1:256160591018:web:f9a512a88ef8432c5db4d3"
+  },
+  mapbox: {
+    accessToken : 'pk.eyJ1IjoicGV0bmF0aWNzIiwiYSI6ImNrcm5tcWV1MDJ3aWYydW8yZHNmOGl5NmgifQ.uUjGxRinvRkh8kGiDqVEzg'
   }
 };
